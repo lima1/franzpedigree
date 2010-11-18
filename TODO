@@ -1,0 +1,15 @@
+Some ideas for future features:
+
+- aunt/uncles mismatch distributions
+- use fullsib information to include unsampled parents in pedigree output
+- SNPs
+- allele freqs for each thread and, optionally, for each sampling location
+- more MCMC diagnositic tools (at least some plots)
+- speedup update functions (allele freqs-will be difficult).
+- option to dump sampled pedigrees
+- cleanup the TC stuff in pedigree.c/dag.c
+- gibbs sampling: * pairs or triples of loci? 
+                  * only alleles that are used in LOD calculations
+- Is there a better way of filtering than this arbitrary --mintyped parameter?
+- maybe switch from MT to dSFMT
+- implement my world domination formula

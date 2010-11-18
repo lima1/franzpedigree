@@ -1,0 +1,137 @@
+Version 2.0
+===========
+
+2010-01-06  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+2.0.0:
+
+New Features: 
+    -- support for monoecious plants
+	-- support for clonal populations
+	-- output genotypes in PARENTE format
+	-- output allele frequency S.E. in locisummary
+	-- exact ML algorithm (Robert Cowell, --saexactmax option) 
+	-- if --N and --Nmax is omitted, a complete sampling is assumed
+
+Minor Changes:
+    -- dcmt from 0.5 to 0.6.1
+	-- uthash to 1.9.3
+	-- included Romanov and Futurama data in examples
+	-- fixed crash in HWE test (thanks James!)
+	
+Version 1.2
+===========
+
+2009-24-06  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+1.2.0:
+
+New Features:
+	--mismatchout option: 
+	   Mother-offspring mismatches and mismatches observed
+	   during MCMC are listed in this output file
+
+Important Performance enhancements:
+
+	* FRANz is now significantly faster on huge datasets (>10000) 
+	* less memory consumption (especially --fullsibtest).
+	* minor optimizations
+
+Minor Bugfixes
+	
+Minor improvements:
+	--verbose flag now more useful
+
+
+2009-29-06  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+1.2.1:
+
+Minor improvements:
+
+	* std. deviation in summary.txt
+	* warning if data contains alleles coded as '0' (some programs code
+	  missing values with a zero)
+
+Bugfixes:
+
+	* crash with --selfing 
+	* leading 0 in infile caused problems			
+	
+1.2.2:
+
+2009-08-07  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+Major Improvements:
+
+	* More efficient MCMC sampling. Instead of simple Metropolis
+	  sampling, we sample new parentages now according their posterior
+	  probabilities: q(x_i,x_j) = Pr(x_j)/ (1.0 - Pr(x_i)) 
+
+	* Less stringent filtering of parentages => slightly more accurate
+	  posteriors with marker panels with low exclusion probabilities.
+
+Minor Improvements:
+
+	* output genotypes for the RMES program (selfing rate estimations) with
+	  --rmesout.
+
+	* manpage 
+
+Bugfixes:
+
+	* Initial trio/pair LODs wrong with missing data (correct during SA/MCMC,
+	  thus this bug had little to no consequences)
+	* various minor bugfixes for --updatefreqs 
+
+2009-11-07  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+Major Bugfix (Linux and Mac):
+
+	* MCMCMC temperature wrong, T was assumed instead of 1/T. 
+
+Minor Improvements:
+
+	* less memory consumption without age data
+
+Version 1.1
+===========
+
+2009-16-06  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+New Features:
+
+	* fullsibtest:
+	    
+		Tests for "indirect" fullsibs
+		-----------------------------
+	    If A,B and B,C are FS  with significant p-Value, then FRANz will 
+	    test A and C. If A and C are unlikely FS, then A,B or B,C is a false 
+	    positive, if they are likely (but not significant) A,B,C are 
+	    fullsibs.
+
+		Define tests
+		------------
+		One can now define the tests with the --fullsibH0 option.
+
+		Output fullsibs
+		---------------
+		the --siblingsoutformat option allows the output of the fullsibs as
+		FRANz,txt and/or CSV file.
+
+
+	* Nicer Graphviz pedigrees.	  
+
+Many performance enhancements: 
+	* no critical OpenMP sections necessary anymore
+	* MCMC or SA only when this is necessary (e.g. no age data)
+	* many minor optimizations
+
+
+Version 1.0
+===========
+
+2009-22-05  Markus Riester  <markus@bioinf.uni-leipzig.de>
+
+First stable release. Thanks for all bugreports and feature requests :)
+

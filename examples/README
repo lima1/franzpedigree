@@ -1,0 +1,30 @@
+examples/simpsons:
+
+   A small 3 generation dataset. See man FRANz.
+
+examples/penaeus_monodon:
+
+   A two generation dataset of the black tiger shrimp P. monodon.
+   Development of a microsatellite DNA parentage marker suite for black tiger
+   shrimp Penaeus monodon. Dean R. Jerry, Brad S. Evansa, Matt Kenway and Kate Wilson. Aquaculture Vol. 255 (1-4). 2005
+
+   Thanks Dean Jerry.
+
+   You can analyze this dataset for example with following parameters:
+
+   FRANz --pedigreeincheck ../input/penaeus_monodon.pedigree \
+   ../input/penaeus_monodon.dat --Nmax 50 --poutformat 1,2 --ignoreage --fullsibtest  \
+   --updatefreqs --maxdepth 3
+
+   Or if we want to use age data:
+
+   FRANz --pedigreeincheck ../input/penaeus_monodon.pedigree ../input/penaeus_monodon.dat  \
+   --Nmax 50 --femrepro 1:1 --malerepro 1:1 --poutformat 1,2 --fullsibtest --updatefreqs 
+
+examples/Romanov   
+    Gill et al. 1994, Coble et al. 2009
+    
+    To get similar results as in Cowell 2009 (TPB):
+
+    FRANz ../input/Romanov.dat --mhchains 0 --numloci 4 --freqin ../input/Romanov.freqs --typingerror 0.0 --ignoresex
+

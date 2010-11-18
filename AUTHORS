@@ -1,0 +1,14 @@
+Markus Riester (markus@bioinf.uni-leipzig.de)
+Peter F. Stadler (studla@bioinf.uni-leipzig.de)
+Konstantin Klemm (klemm@bioinf.uni-leipzig.de)
+
+Robert G. Cowell wrote the exact ML reconstruction (exact.c).
+Sun-Wei Guo wrote the exact HWE test (hwe.c)
+
+Important Bugreports and Comments:
+
+Jocelyn Poissant
+Eric C. Anderson
+Philippe Fullsack
+
+Thank you very much!
