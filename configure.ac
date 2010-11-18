@@ -28,6 +28,8 @@ AC_C_CONST
 AC_TYPE_SIZE_T
 
 # Checks for library functions.
+
+# uncomment AC_FUNC_MALLOC on MINGW
 AC_FUNC_MALLOC
 AC_FUNC_VPRINTF
 AC_CHECK_FUNCS([memset memmove memcpy pow exp log sqrt strcasecmp strchr strrchr atexit isnan])
@@ -67,6 +69,9 @@ else
     CFLAGS="$CFLAGS -O3 -pedantic -Wall"
 #    AC_DEFINE(DEBUG,0,[Disable debug code])
 fi
+
+# Mingw
+#CFLAGS="$CFLAGS -DWIN32"
 
 AC_ARG_ENABLE([gprof],
 AC_HELP_STRING([--enable-gprof], [Enable profiling (default=no)]),

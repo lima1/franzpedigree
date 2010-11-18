@@ -18,6 +18,7 @@ Minor Changes:
 	-- uthash to 1.9.3
 	-- included Romanov and Futurama data in examples
 	-- fixed crash in HWE test (thanks James!)
+	-- fix for new autoconf (new m4/openmp.m4)
 	
 Version 1.2
 ===========
