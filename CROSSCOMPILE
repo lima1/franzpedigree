@@ -1,0 +1,25 @@
+1. Install MinGW and NSIS. 
+
+2. Make changes described in configure.ac.
+
+3. Run configure:
+
+   If MinGw binaries are names i386-mingw32-gcc, i386-mingw32-c++, ..., use this
+   binary prefix as --host in configure:
+
+   ./configure --host=i386-mingw32
+
+4. Compile:
+
+   make
+   
+5. copy NSIS installer files in distribution root 
+
+    cp extras/install/win/FRANz.nsi .
+    cp extras/install/win/EnvVarUpdate.nsh .
+
+6. Make installer:
+
+    makensis FRANz.nsi
+
+

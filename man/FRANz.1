@@ -128,7 +128,7 @@ parent pair, this is an additional hint that A and B are fullsibs. So we
 should use a less conservative p-Value threshold (0.05).
 .TP
 .BI --fullsibH0 " i,i,i"
-Defines the null hypotheses (PO,HS,U). Examples:
+Defines the null hypotheses (PO,HS,U) and their prior probabilities. Examples:
 .RS
 .TP
 0,0,1 : FS vs. Unrelated.
@@ -723,7 +723,7 @@ You can even turn the halfsib test off with:
 .PP
 FRANz will then test every pair against the null hypotheses 
 parent-offspring and unrelated. The integer numbers can be used as weighting
-factor in the p-Value calculation (see OPTIONS). 
+factor (prior probabilities) in the p-Value calculation (see OPTIONS). 
 .PP
 Per default, FRANz only searches in the offspring generation for fullsibs.
 This means all individuals without candidate parents in the data are omitted.
