@@ -94,7 +94,12 @@ if (@locus_names) {
     if ($num_loci != scalar @locus_names) {
         JSONerror(
             'Could not read locus names in header. Uncheck the option or fix the header (' . join(q{,}, @locus_names) . ').' );
-    }        
+    }
+    if ($locus_names[0] =~ m{\A \d+ \z}xms) {
+        JSONerror(
+            'Locus names numeric, change at least the first ID it to non-numeric, for example L'. $locus_names[0] .' (' . join(q{,}, @locus_names) . ').' );
+
+    }    
     $output .=  "\n" . join("\n", @locus_names);
 }
 
