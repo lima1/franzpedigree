@@ -41,9 +41,11 @@ while ( my $line = <$fh> ) {
     $line_number++;
     if ($line_number == 1 && $has_header && $read_locus_names) {
         my @fields = split $sep_char, $line;
+        COL:
         for (my $i = $data_col; $i <= $#fields; $i+=2) {
             my $locus_name = trim($fields[$i]);
             $locus_name =~ s/ a \z//xms;
+            next COL if $locus_name =~ m{\A \s* \z}xms;
             push @locus_names, $locus_name;
         }
     }
@@ -93,7 +95,10 @@ my $output = scalar(keys %rows) . " $num_loci / $dataset_title";
 if (@locus_names) {
     if ($num_loci != scalar @locus_names) {
         JSONerror(
-            'Could not read locus names in header. Uncheck the option or fix the header (' . join(q{,}, @locus_names) . ').' );
+            'Could not read locus names in header. Uncheck the option or fix the header (' . join(q{,}, @locus_names) . ").\n" .
+            'Make sure the locus names are in the same columns as the ' .
+            'corresponding allele data.'
+        );
     }
     if ($locus_names[0] =~ m{\A \d+ \z}xms) {
         JSONerror(

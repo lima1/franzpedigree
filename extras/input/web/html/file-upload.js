@@ -35,7 +35,7 @@ Ext.onReady(function(){
         fileUpload: true,
         width: 590,
         frame: true,
-        title: 'FRANz CSV Importer 0.4.4',
+        title: 'FRANz CSV Importer 0.4.5',
         autoHeight: true,
         bodyStyle: 'padding: 10px 10px 0 10px;',
         labelWidth: 190,
