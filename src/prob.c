@@ -573,7 +573,7 @@ static void
 recalcPosteriorProbs(int id, POSTERIORS ** posteriors, double Nf, double Nm)
 {
     int     i;
-    double  sum_l = 0., log_c_f, log_c_m, log_c_both, sum_r = 0., tmp;
+    double  sum_l = 0., log_c_f, log_c_m, log_c_both, sum_r = 0.;
     
     if (!Options.AssumeCompleteSample) {
     /* we need the number of unsampled individuals, not the total number */
@@ -1758,6 +1758,22 @@ printID(FILE * fp, int id)
                 Data.id_mapping[id].typed_loci);
 }
 
+double
+parentPosterior(int i,int v, POSTERIORS ** posteriors) {
+    int j;
+    double pp, sum = 0;
+
+        for (j = 0; j < Probs.num_posteriors[i]; j++) {
+            if (Probs.mh_sampled_pedigrees < 1)
+                pp = exp(posteriors[i][j].p_opt);
+            else
+                pp = posteriors[i][j].observed /
+                    (double)Probs.mh_sampled_pedigrees;
+            if (Probs.posteriors[i][j].v == v) sum += pp;
+            else if (Probs.posteriors[i][j].w == v) sum += pp;
+        }
+        return sum;
+}
 
 void
 PROBdumpPosteriors(FILE * fp, POSTERIORS ** posteriors, Dag D, Dag D_correct,
@@ -1769,7 +1785,7 @@ PROBdumpPosteriors(FILE * fp, POSTERIORS ** posteriors, Dag D, Dag D_correct,
     double  pp, d1, dg;
 
     fprintf(fp,
-            "Offspring,Loci Typed,Parent 1,Loci Typed,Parent 2,Loci Typed,LOD,Posterior,Common Loci Typed,Mismatches,n_f,n_m,Pair LOD Parent 1,Pair LOD Parent 2\n");
+            "Offspring,Loci Typed,Parent 1,Loci Typed,Parent 2,Loci Typed,LOD,Posterior,Common Loci Typed,Mismatches,n_f,n_m,Pair LOD Parent 1,Pair LOD Parent 2,Posterior Parent 1,Posterior Parent 2\n");
 
     for (i = 0; i < Data.num_samples; i++) {
         if (Probs.num_candidates[i] <= 0)
@@ -1850,6 +1866,9 @@ PROBdumpPosteriors(FILE * fp, POSTERIORS ** posteriors, Dag D, Dag D_correct,
                                            ignore_ary);
                     fprintf(fp, "%E", d1 - dg);
                 }
+                fprintf(fp, ",%.4f,%.4f", parentPosterior(i,posteriors[i][j].v,posteriors),
+                                          parentPosterior(i,posteriors[i][j].w,posteriors));
+
                 if (chosen != ' ')
                     fprintf(fp, ",%c", chosen);
                 fprintf(fp, "\n");
