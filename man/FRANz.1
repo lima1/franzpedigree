@@ -1284,6 +1284,21 @@ for every loci. The thresholds are determined with standard statistical
 methods (see --typingerror). You should always check the error rate and if
 necessary provide a better one with the --typingerror option. 
 
+.SH MISSING AGE DATA
+
+One of the strengths of FRANz is that it can handle datasets with unknown
+dates of birth. There are caveats, however. Most importantly, the likelihood
+model treats, for each individual, all remaining individuals as candidate
+parents. One consequence is that n, the number of sampled individuals per
+generation is overestimated. This has to be considered when setting N, the
+total population size. It is recommended to set the number of unsampled
+individuals directly by specifing --N and --n manually. If N is estimated
+jointly with the pedigree, the estimated sampling rate (in summary.txt) is
+typically more accurate than the estimated N. The sampling rate is estimated
+from the pedigree directly (from the fraction of individuals with incoming
+arcs) which is more robust than the calculation of N from the likelihood
+model.
+
 .SH DATA CONVERSION
 
 If you want to compare the FRANz results with CERVUS, you can easily do that
