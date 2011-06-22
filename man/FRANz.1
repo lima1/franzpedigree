@@ -1290,7 +1290,7 @@ One of the strengths of FRANz is that it can handle datasets with unknown
 dates of birth. There are caveats, however. Most importantly, the likelihood
 model treats, for each individual, all remaining individuals as candidate
 parents. One consequence is that n, the number of sampled individuals per
-generation is overestimated. This has to be considered when setting N, the
+generation, is overestimated. This has to be considered when setting N, the
 total population size. It is recommended to set the number of unsampled
 individuals directly by specifing --N and --n manually. If N is estimated
 jointly with the pedigree, the estimated sampling rate (in summary.txt) is
@@ -1298,6 +1298,13 @@ typically more accurate than the estimated N. The sampling rate is estimated
 from the pedigree directly (from the fraction of individuals with incoming
 arcs) which is more robust than the calculation of N from the likelihood
 model.
+
+It is further recommended to specify --poutformat 2. Often it is not possible
+to identfy the parent in a parent-offspring pair when age data is missing.
+This would result in posterior probabilites close to 0.5 (in half of the
+pedigrees the true offspring will be the parent). The mentioned flag will list
+all pairs and triples with positive LOD score.
+
 
 .SH DATA CONVERSION
 
