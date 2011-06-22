@@ -1759,7 +1759,7 @@ printID(FILE * fp, int id)
 }
 
 double
-parentPosterior(int i,int v, POSTERIORS ** posteriors) {
+parentPosterior(int i,int v, POSTERIORS ** posteriors,int k) {
     int j;
     double pp, sum = 0;
 
@@ -1769,8 +1769,13 @@ parentPosterior(int i,int v, POSTERIORS ** posteriors) {
             else
                 pp = posteriors[i][j].observed /
                     (double)Probs.mh_sampled_pedigrees;
-            if (Probs.posteriors[i][j].v == v) sum += pp;
-            else if (Probs.posteriors[i][j].w == v) sum += pp;
+            if (v < 0) {
+                if (k == 1 && Probs.posteriors[i][j].v == v) sum += pp;
+                else if (k == 2 && Probs.posteriors[i][j].w == v) sum += pp;
+            } else {
+                if (Probs.posteriors[i][j].v == v) sum += pp;
+                else if (Probs.posteriors[i][j].w == v) sum += pp;
+            }
         }
         return sum;
 }
@@ -1866,8 +1871,8 @@ PROBdumpPosteriors(FILE * fp, POSTERIORS ** posteriors, Dag D, Dag D_correct,
                                            ignore_ary);
                     fprintf(fp, "%E", d1 - dg);
                 }
-                fprintf(fp, ",%.4f,%.4f", parentPosterior(i,posteriors[i][j].v,posteriors),
-                                          parentPosterior(i,posteriors[i][j].w,posteriors));
+                fprintf(fp, ",%.4f,%.4f", parentPosterior(i,posteriors[i][j].v,posteriors,1),
+                                          parentPosterior(i,posteriors[i][j].w,posteriors,2));
 
                 if (chosen != ' ')
                     fprintf(fp, ",%c", chosen);

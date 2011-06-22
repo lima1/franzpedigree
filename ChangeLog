@@ -10,6 +10,7 @@ New Features:
 	-- support for clonal populations
 	-- output genotypes in PARENTE format
 	-- output allele frequency S.E. in locisummary
+	-- output parent pair posterior probabilities
 	-- exact ML algorithm (Robert Cowell, --saexactmax option) 
 	-- if --N and --Nmax is omitted, a complete sampling is assumed
 
