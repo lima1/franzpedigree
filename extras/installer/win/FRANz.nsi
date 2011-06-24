@@ -55,6 +55,7 @@ Section "FRANz (required)" SecFRANz
   
   ; Put file there
   File "src\FRANz.exe"
+  File "man\FRANz.pdf"
   
   ; Write the installation path into the registry
   WriteRegStr HKLM SOFTWARE\FRANz "Install_Dir" "$INSTDIR"
@@ -74,6 +75,7 @@ Section "Start Menu Shortcuts"
   CreateDirectory "$SMPROGRAMS\FRANz"
   CreateShortCut "$SMPROGRAMS\FRANz\Uninstall.lnk" "$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
   CreateShortCut "$SMPROGRAMS\FRANz\FRANz.lnk" "$INSTDIR\FRANz.exe" "" "$INSTDIR\FRANz.exe" 0
+  CreateShortCut "$SMPROGRAMS\FRANz\FRANzManual.lnk" "$INSTDIR\FRANz.pdf" "" "$INSTDIR\FRANz.pdf" 0
 SectionEnd
 
 ; Optional section (can be disabled by the user)
