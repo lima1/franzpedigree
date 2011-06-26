@@ -523,13 +523,13 @@ Now open the file summary.txt. You will get some summary statistics (more
 detailed in locisummary.txt). The most important file is 
 parentage.csv, which lists the likeliest parents of each individual:
 .PP
-Grampa,2,,,,,0.000000E+00,1.0000,2,0,0,0,,,<
+Grampa,2,,,,,0.000000E+00,1.0000,2,0,0,0,,,1.0000,1.0000,<
 .br
-Homer,3,Grampa,2,,,-2.613851E-01,0.6662,2,0,0,1,1.366295E+00,,<
+Homer,3,Grampa,2,,,-2.613851E-01,0.6396,2,0,0,1,1.102101E+00,,0.6396,1.0000,<
 .br
  ...
 .br
-Flanders,2,,,,,0.000000E+00,0.9980,3,0,3,3,,,<
+Flanders,2,,,,,0.000000E+00,1.0000,3,0,3,3,,,1.0000,1.0000,<
 .PP
 The most important values are the LOD scores in column 7 [MT86] and the
 posterior probabilities in column 8 [NMCP01]. MCMC and SA are necessary when
@@ -1061,21 +1061,21 @@ standard Metropolis-Hastings algorithm or the MCMCMC algorithm when compiled
 with --enable-openmp on a multi-core CPU. The parentage in the ML pedigree is
 marked with a '<' in the last column. This is not a sign of statistical significance! 
 .PP
-Offspring,Loci Typed,Parent 1,Loci Typed,Parent 2,Loci Typed,LOD,Posterior,Common Loci Typed,Mismatches,n_f,n_m,Pair LOD Parent 1,Pair LOD Parent 2
+Offspring,Loci Typed,Parent 1,Loci Typed,Parent 2,Loci Typed,LOD,Posterior,Common Loci Typed,Mismatches,n_f,n_m,Pair LOD Parent 1,Pair LOD Parent 2,Posterior Parent 1,Posterior Parent 2
 .br
-Grampa,2,,,,,0.000000E+00,1.0000,2,0,0,0,,,<
+Grampa,2,,,,,0.000000E+00,1.0000,2,0,0,0,,,1.0000,1.0000,<
 .br
-Homer,3,Grampa,2,,,-2.613851E-01,0.6662,2,0,0,1,1.366295E+00,,<
+Homer,3,Grampa,2,,,-2.613851E-01,0.6396,2,0,0,1,1.102101E+00,,0.6396,1.0000,<
 .br
-Bart,3,Marge,2,Homer,3,7.354571E-01,0.8473,3,0,1,1,9.704751E-03,1.585450E+00,<
+Bart,3,Marge,2,Homer,3,7.354571E-01,0.8200,3,0,1,1,4.286587E-01,1.321257E+00,0.9348,0.8200,<
 .br
-Lisa,3,Marge,2,Homer,3,3.570038E+00,0.9298,3,0,1,1,1.234198E+00,1.585450E+00,<
+Lisa,3,Marge,2,Homer,3,3.570038E+00,0.9210,3,0,1,1,1.653152E+00,1.321257E+00,0.9696,0.9440,<
 .br
-Maggie,3,Marge,2,Homer,3,1.411737E+00,0.6927,3,0,1,1,-6.734426E-01,9.081603E-01,<
+Maggie3210,3,Marge,2,Homer,3,1.411737E+00,0.6800,3,0,1,1,4.286587E-01,6.439669E-01,0.8035,0.7970,<
 .br
-Marge,2,,,,,0.000000E+00,1.0000,2,0,0,1,,,<
+Marge,2,,,,,0.000000E+00,1.0000,2,0,0,1,,,1.0000,1.0000,<
 .br
-Flanders,2,,,,,0.000000E+00,0.9980,3,0,3,3,,,<
+Flanders,2,,,,,0.000000E+00,1.0000,3,0,3,3,,,1.0000,1.0000,<
 .PP
 .B Pedigree
 .PP
