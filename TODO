@@ -12,4 +12,4 @@ Some ideas for future features:
                   * only alleles that are used in LOD calculations
 - Is there a better way of filtering than this arbitrary --mintyped parameter?
 - maybe switch from MT to dSFMT
-- implement my world domination formula
+- world domination

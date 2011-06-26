@@ -84,6 +84,8 @@ Section "Examples"
   CreateDirectory "$INSTDIR\examples\simpsons"
   CreateDirectory "$INSTDIR\examples\penaeus_monodon"
   CreateDirectory "$INSTDIR\examples\penaeus_monodon\input"
+  CreateDirectory "$INSTDIR\examples\Romanov"
+  CreateDirectory "$INSTDIR\examples\Romanov\input"
   SetOutPath "$INSTDIR\examples\simpsons"
   FILE "examples\simpsons\simpsons.dat"
   FILE "examples\simpsons\simpsons.mothers"
@@ -91,6 +93,9 @@ Section "Examples"
   SetOutPath "$INSTDIR\examples\penaeus_monodon\input"
   FILE "examples\penaeus_monodon\input\penaeus_monodon.dat"
   FILE "examples\penaeus_monodon\input\penaeus_monodon.pedigree"
+  SetOutPath "$INSTDIR\examples\Romanov\input"
+  FILE "examples\Romanov\input\Romanov.dat"
+  FILE "examples\Romanov\input\Romanov.freqs"
   SetOutPath "$INSTDIR\examples"
   FILE "examples\README"
   SetOutPath $INSTDIR
@@ -140,10 +145,12 @@ Section "Uninstall"
 
   ; Remove files and uninstaller
   Delete $INSTDIR\FRANz.exe
+  Delete $INSTDIR\FRANz.pdf
   Delete $INSTDIR\Uninstall.exe
   Delete "$INSTDIR\examples\README"
   Delete "$INSTDIR\examples\simpsons\*.*"
   Delete "$INSTDIR\examples\penaeus_monodon\input\*.*"
+  Delete "$INSTDIR\examples\Romanov\input\*.*"
   Delete "$INSTDIR\extras\input\*.*"
 
   ; Remove shortcuts, if any
@@ -155,6 +162,8 @@ Section "Uninstall"
   RMDir "$INSTDIR\examples\simpsons"
   RMDir "$INSTDIR\examples\penaeus_monodon\input"
   RMDir "$INSTDIR\examples\penaeus_monodon"
+  RMDir "$INSTDIR\examples\Romanov\input"
+  RMDir "$INSTDIR\examples\Romanov"
   RMDir "$INSTDIR\examples"
   RMDir "$SMPROGRAMS\FRANz"
   RMDir "$INSTDIR"

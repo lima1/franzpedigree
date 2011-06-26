@@ -1,4 +1,4 @@
-1. Install MinGW and NSIS. 
+1. Install MinGW and NSIS (for Mac: these are available as macports). 
 
 2. Make changes described in configure.ac.
 
@@ -22,4 +22,5 @@
 
     makensis FRANz.nsi
 
+Run script cc.sh for steps 2-6.
 
