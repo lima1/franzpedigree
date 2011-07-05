@@ -20,7 +20,7 @@ AC_CHECK_LIB([m], [main])
 AC_HEADER_STDC
 AC_CHECK_HEADERS([stdlib.h stdbool.h string.h math.h sys/time.h getopt.h])
 # libtap
-AC_CHECK_HEADERS([pthread.h gvc.h])
+AC_CHECK_HEADERS([pthread.h])
 AC_CHECK_LIB(pthread, main)
 
 # Checks for typedefs, structures, and compiler characteristics.
