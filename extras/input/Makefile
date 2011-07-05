@@ -31,6 +31,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
+build_triplet = x86_64-apple-darwin10.8.0
+host_triplet = x86_64-apple-darwin10.8.0
 subdir = extras/input
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -47,38 +49,53 @@ DIST_SOURCES =
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = ${SHELL} /Users/markus/home/git/franzpedigree/missing --run aclocal-1.11
 AMTAR = ${SHELL} /Users/markus/home/git/franzpedigree/missing --run tar
+AR = ar
 AUTOCONF = ${SHELL} /Users/markus/home/git/franzpedigree/missing --run autoconf
 AUTOHEADER = ${SHELL} /Users/markus/home/git/franzpedigree/missing --run autoheader
 AUTOMAKE = ${SHELL} /Users/markus/home/git/franzpedigree/missing --run automake-1.11
 AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
-CFLAGS = -g -O2 -fopenmp -std=c99 -DADJLIST -O3 -pedantic -Wall
+CFLAGS =  -fopenmp -std=c99 -DADJLIST -O3 -pedantic -Wall
 CPP = gcc -E
 CPPFLAGS = 
 CYGPATH_W = echo
 DEFS = -DHAVE_CONFIG_H
 DEPDIR = .deps
+DLLTOOL = false
+DSYMUTIL = dsymutil
+DUMPBIN = 
 ECHO_C = \c
 ECHO_N = 
 ECHO_T = 
 EGREP = /opt/local/bin/grep -E
 ENABLE_COVERAGE = 2
 EXEEXT = 
+FGREP = /opt/local/bin/grep -F
 GREP = /opt/local/bin/grep
 INSTALL = /opt/local/bin/ginstall -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
+LD = /usr/libexec/gcc/i686-apple-darwin10/4.2.1/ld
 LDFLAGS =  
 LIBOBJS = 
 LIBS = -lpthread -lm 
+LIBTOOL = $(SHELL) $(top_builddir)/libtool
+LIPO = lipo
+LN_S = ln -s
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /Users/markus/home/git/franzpedigree/missing --run makeinfo
+MANIFEST_TOOL = :
 MKDIR_P = /opt/local/bin/gmkdir -p
+NM = /usr/bin/nm
+NMEDIT = nmedit
+OBJDUMP = false
 OBJEXT = o
 OPENMP_CFLAGS = -fopenmp
+OTOOL = otool
+OTOOL64 = :
 PACKAGE = FRANz
 PACKAGE_BUGREPORT = markus@bioinf.uni-leipzig.de 
 PACKAGE_NAME = FRANz
@@ -88,29 +105,40 @@ PACKAGE_URL =
 PACKAGE_VERSION = 1.9.999
 PATH_SEPARATOR = :
 RANLIB = ranlib
+SED = /opt/local/bin/gsed
 SET_MAKE = 
 SHELL = /bin/sh
-STRIP = 
+STRIP = strip
 VERSION = 1.9.999
 abs_builddir = /Users/markus/home/git/franzpedigree/extras/input
 abs_srcdir = /Users/markus/home/git/franzpedigree/extras/input
 abs_top_builddir = /Users/markus/home/git/franzpedigree
 abs_top_srcdir = /Users/markus/home/git/franzpedigree
+ac_ct_AR = ar
 ac_ct_CC = gcc
+ac_ct_DUMPBIN = 
 am__include = include
 am__leading_dot = .
 am__quote = 
 am__tar = ${AMTAR} chof - "$$tardir"
 am__untar = ${AMTAR} xf -
 bindir = ${exec_prefix}/bin
+build = x86_64-apple-darwin10.8.0
 build_alias = 
+build_cpu = x86_64
+build_os = darwin10.8.0
+build_vendor = apple
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
+host = x86_64-apple-darwin10.8.0
 host_alias = 
+host_cpu = x86_64
+host_os = darwin10.8.0
+host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
@@ -168,6 +196,12 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+mostlyclean-libtool:
+	-rm -f *.lo
+
+clean-libtool:
+	-rm -rf .libs _libs
 tags: TAGS
 TAGS:
 
@@ -236,7 +270,7 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-generic clean-libtool mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
@@ -288,7 +322,7 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic
+mostlyclean-am: mostlyclean-generic mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -302,15 +336,16 @@ uninstall-am:
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am check check-am clean clean-generic distclean \
-	distclean-generic distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am install-man \
-	install-pdf install-pdf-am install-ps install-ps-am \
-	install-strip installcheck installcheck-am installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am
+.PHONY: all all-am check check-am clean clean-generic clean-libtool \
+	distclean distclean-generic distclean-libtool distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-ps install-ps-am install-strip \
+	installcheck installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-generic \
+	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am
 
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
