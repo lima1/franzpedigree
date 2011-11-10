@@ -645,12 +645,13 @@ recalcPosteriorProbs(int id, POSTERIORS ** posteriors, double Nf, double Nm)
 
         sum_l += MAX(0,exp(posteriors[id][i].lw-max));
     }
-
-    /* the likelihood of the filtered triples and dyads */
-    sum_l += Probs._sum_filtered_likelihood_triples[id] / exp(max);
-    sum_l += Probs._sum_filtered_likelihood_dyads_f[id] * Nm / exp(max);
-    sum_l += Probs._sum_filtered_likelihood_dyads_m[id] * Nf / exp(max);
     
+    if (exp(max) > 0) {
+        /* the likelihood of the filtered triples and dyads */
+        sum_l += ( Probs._sum_filtered_likelihood_triples[id] +  Probs._sum_filtered_likelihood_dyads_f[id] * Nm +
+                Probs._sum_filtered_likelihood_dyads_m[id] * Nf) / exp(max);
+    }
+
     if (!Options.AssumeCompleteSample)
         for (i = 0; i < Probs.num_posteriors[id]; i++)
             posteriors[id][i].p_opt = log(exp(posteriors[id][i].lw - max) / sum_l);
