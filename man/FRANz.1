@@ -108,7 +108,8 @@ And the same for siblings.
 .TP
 .B --[no]fullsibtest      
 Detect siblings. This turns our fullsib heuristic as described in [RSK09] on
-or off (default --nofullsibtest).
+or off (default --nofullsibtest). Please read the section FULLSIB before
+turning this on! 
 .TP
 .B --fullsibparental 
 Detect fullsibs also in parental generation? 
@@ -469,10 +470,10 @@ diploid loci.
 Now, run FRANz with this Simpsons example file (the $ visualizes the Command
 Prompt, don't type it):
 .PP
- $ FRANz --Nmax 2 simpsons.dat
+ $ FRANz --N 2 simpsons.dat
 .PP
-The leading "--" before the parameters is important! With --Nmax 2 we say that
-every offspring has not more than two candidate fathers in our population - and
+The leading "--" before the parameters is important! With --N 2 we say that
+every offspring has two candidate fathers in our population - and
 for parentage inference also not more than two candidate mothers. 
 
 .B IMPORTANT: if you have a good estimate of the number of unsampled candidate
@@ -484,7 +485,7 @@ for parentage inference also not more than two candidate mothers.
 Now you will get a warning because you have to specify the age range in
 which an individual can reproduce sexually:
 .PP
- $ FRANz --Nmax 2 --femrepro 14:45 --malerepro 14:45 simpsons.dat
+ $ FRANz --N 2 --femrepro 14:45 --malerepro 14:45 simpsons.dat
 .PP
 You can also specify that FRANz should update the allele frequencies during
 Simulated Annealing (SA) optimization and Markov Chain Monte Carlo (MCMC)
@@ -492,7 +493,7 @@ sampling with the --updatefreqs option. This is a good idea here because the
 dataset is quite small and we have one big family:
 
 .PP
- $ FRANz --Nmax 2 --femrepro 14:45 --malerepro 14:45 --updatefreqs simpsons.dat
+ $ FRANz --N 2 --femrepro 14:45 --malerepro 14:45 --updatefreqs simpsons.dat
 .PP
 The output:
 .PP
@@ -544,7 +545,7 @@ this individual had the same parentage. In only 66% of all pedigrees, Grampa
 was identified as father of Homer. You can use the --poutformat 
 option if you want to list all considered parentages, not only the likeliest:
 .PP
- $ FRANz --Nmax 2 --femrepro 14:45 --malerepro 14:45 --updatefreqs --poutformat 2 simpsons.dat
+ $ FRANz --N 2 --femrepro 14:45 --malerepro 14:45 --updatefreqs --poutformat 2 simpsons.dat
 .PP
 See also section OUTPUT FILES.
 .PP
@@ -558,7 +559,7 @@ for example in a SVG file with
 You can use the FRANz pedigree.dat file again as input file. For example if you
 know some mother-offspring relationships:
 .PP
- $ FRANz --Nmax 2 --femrepro 14:45 --malerepro 14:45 --pedigreein simpsons.mothers simpsons.dat
+ $ FRANz --N 2 --femrepro 14:45 --malerepro 14:45 --pedigreein simpsons.mothers simpsons.dat
 .PP
 The age fields (year of birth and death) might be confusing. This does not
 necessarily mean that you have to know the exact years. You can use this
@@ -700,9 +701,19 @@ parents tremendously. FRANz can identify highly probable fullsibs in the data
 with the --fullsibtest option. If it is very unlikely that your data contains
 many fullsibs, you should not turn this on. False positives can decrease the accuracy of the
 reconstruction. As we have already said, true positives can greatly enhance
-the accuracy, but if there are no fullsibs, you can only loose. As an
-alternative to avoid false positives, use very conservative p-Value
-thresholds:
+the accuracy, but if there are no fullsibs, you can only loose. 
+
+This feature is still experimental and the default parameters are very
+arbitrary. The number of false negatives will be high, as this feature is
+designed to only support the parentage inference.  If fullsib inference is
+your main interest, then you have to set reasonable parameters manually. 
+
+Important: --Nmax and --fullsib test together will currently produce biased estimates of
+N when many fullsibs are detected. Use --N instead or compare the influence of
+--fullsibtest on the estimated sampling rates.
+
+P-values are estimated by simulation. The cutoffs are set with the fullsibpvth
+option. For very conservative thresholds, one can set:
 .PP
 .BI --fullsibpvth " 0.0001,0.0001,0.001"
 .PP
@@ -724,6 +735,18 @@ You can even turn the halfsib test off with:
 FRANz will then test every pair against the null hypotheses 
 parent-offspring and unrelated. The integer numbers can be used as weighting
 factor (prior probabilities) in the p-Value calculation (see OPTIONS). 
+.PP
+These prior probabilities are very important for the p-value calculation and have to be
+set manually.
+.PP
+.BI --fullsibH0 " 2,1,100 " --fullsibpvth " 0.01,0.01,0.05"
+.PP
+For example means that it is twice as likely that a pair is fullsib than
+halfsib or aunts/uncles and but 100 times less likely than that they are
+unrelated. If your think you have reasonable estimates, you can lower the
+p-value cutoff, especially if you are not too worried about false positives.
+Again, checking the p-values of rejected pairs may help setting good
+parameters.
 .PP
 Per default, FRANz only searches in the offspring generation for fullsibs.
 This means all individuals without candidate parents in the data are omitted.
@@ -1242,7 +1265,7 @@ command line argument
 which turns on logging of the sampled missing alleles during MCMC. This gives
 you then for every missing value the allele probabilities. Example:
 .PP
-$ FRANz simpsons.dat --Nmax 2 --femrepro 15:45 --malerepro 14:45 --updatefreqs --gibbsmissing --missingout miss.txt
+$ FRANz simpsons.dat --N 2 --femrepro 15:45 --malerepro 14:45 --updatefreqs --gibbsmissing --missingout miss.txt
 .PP
 miss.txt:
 .PP

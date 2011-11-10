@@ -32,7 +32,7 @@
 #include "pvalue.h"
 #include "../libdir/dcmt/include/dc.h"
 
-#define LINESIZE 1024
+#define LINESIZE 1048576
 #define PATHLEN  256
 #define PROGRESSBARSIZE 20
 #define OUTFORMAT_CSV    0

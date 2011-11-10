@@ -42,7 +42,9 @@
 
 #include <stdbool.h>
 
-#define LINESIZE 1024
+#ifndef LINESIZE
+#define LINESIZE 1048576
+#endif
 #define LABELSIZE 10
 
 /* store either in a Nx2 matrix or in a linked list

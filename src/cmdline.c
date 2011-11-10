@@ -783,6 +783,7 @@ CMDLINEparse(int argc, char **argv)
                         break;
                     case 66:
                         Options.Fullsibs = true;
+                        WARN("EXPERIMENTAL FEATURE --fullsibtest. Please read the manual and set parameters manually")
                         break;
                     case 67:
                         strncpy(Options.MissingAllelesOutfilename, optarg,
