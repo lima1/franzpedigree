@@ -147,9 +147,9 @@ main(int argc, char *argv[])
 
         ok(p > 0.4 && p <= 1.0, "Posteriors sum to one");
        ptmp =  pg/(pg+Probs._sum_filtered_likelihood_dyads_f[i] +  Probs._sum_filtered_likelihood_triples[i]+ Probs._sum_filtered_likelihood_dyads_m[i]);
-     /*   fprintf(stderr, "%f %i p=%E  p2=%E %E %E %E\n",ptmp,i,p,pg, Probs._sum_filtered_likelihood_triples[i],
+        fprintf(stderr, "%f %i p=%E  p2=%E %E %E %E\n",ptmp,i,p,pg, Probs._sum_filtered_likelihood_triples[i],
                 Probs._sum_filtered_likelihood_dyads_m[i], Probs._sum_filtered_likelihood_dyads_f[i]
-                );*/
+                );
         ok(CMP_DBL(ptmp,p),"unfiltered correct");
     }    
 

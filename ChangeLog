@@ -20,6 +20,7 @@ Minor Changes:
 	-- included Romanov and Futurama data in examples
 	-- fixed crash in HWE test (thanks James!)
 	-- fix for new autoconf (new m4/openmp.m4)
+	-- fix for underflow problems with large numbers of loci (thanks Daniel!)
 	
 Version 1.2
 ===========

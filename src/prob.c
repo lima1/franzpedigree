@@ -573,7 +573,7 @@ static void
 recalcPosteriorProbs(int id, POSTERIORS ** posteriors, double Nf, double Nm)
 {
     int     i;
-    double  sum_l = 0., log_c_f, log_c_m, log_c_both, sum_r = 0.;
+    double  sum_l = 0., log_c_f, log_c_m, log_c_both, sum_r = 0.,max=MINUSINF;
     
     if (!Options.AssumeCompleteSample) {
     /* we need the number of unsampled individuals, not the total number */
@@ -591,7 +591,8 @@ recalcPosteriorProbs(int id, POSTERIORS ** posteriors, double Nf, double Nm)
         log_c_both = log((Nf * (Nf+1))/2);
     else
         log_c_both = log_c_f + log_c_m;
-
+    
+    /* first find best parentage */
     for (i = 0; i < Probs.num_posteriors[id]; i++) {
         posteriors[id][i].lw = posteriors[id][i].l;
 
@@ -615,17 +616,44 @@ recalcPosteriorProbs(int id, POSTERIORS ** posteriors, double Nf, double Nm)
             }    
         }
 
-        sum_l += exp(posteriors[id][i].lw);
+        if (posteriors[id][i].lw > max) max = posteriors[id][i].lw;
+    }
+    
+    /* now sum them up, relative to best parentage */
+    for (i = 0; i < Probs.num_posteriors[id]; i++) {
+        posteriors[id][i].lw = posteriors[id][i].l;
+
+        if (posteriors[id][i].v < 0 && posteriors[id][i].w < 0)
+            posteriors[id][i].lw += log_c_both;
+        else if (posteriors[id][i].w < 0)
+            posteriors[id][i].lw +=
+                Data.id_mapping[posteriors[id][i].v].sex == 1 ?
+                log_c_m : log_c_f;
+
+        if (!Options.IgnoreRamets && Data.num_ramets - Data.num_samples > 0) {
+            if (posteriors[id][i].v >= 0) {
+                posteriors[id][i].lw +=
+                    log(Data.id_mapping[posteriors[id][i].v].ramets);
+                sum_r += Data.id_mapping[posteriors[id][i].v].ramets;
+            }    
+            if (posteriors[id][i].w >= 0) {
+                posteriors[id][i].lw +=
+                    log(Data.id_mapping[posteriors[id][i].w].ramets);
+                sum_r += Data.id_mapping[posteriors[id][i].w].ramets;
+            }    
+        }
+
+        sum_l += MAX(0,exp(posteriors[id][i].lw-max));
     }
 
     /* the likelihood of the filtered triples and dyads */
-    sum_l += Probs._sum_filtered_likelihood_triples[id];
-    sum_l += Probs._sum_filtered_likelihood_dyads_f[id] * Nm;
-    sum_l += Probs._sum_filtered_likelihood_dyads_m[id] * Nf;
+    sum_l += Probs._sum_filtered_likelihood_triples[id] / exp(max);
+    sum_l += Probs._sum_filtered_likelihood_dyads_f[id] * Nm / exp(max);
+    sum_l += Probs._sum_filtered_likelihood_dyads_m[id] * Nf / exp(max);
     
     if (!Options.AssumeCompleteSample)
         for (i = 0; i < Probs.num_posteriors[id]; i++)
-            posteriors[id][i].p_opt = log(exp(posteriors[id][i].lw) / sum_l);
+            posteriors[id][i].p_opt = log(exp(posteriors[id][i].lw - max) / sum_l);
     else 
         for (i = 0; i < Probs.num_posteriors[id]; i++)
             posteriors[id][i].p_opt = posteriors[id][i].l;
