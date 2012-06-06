@@ -68,7 +68,18 @@ Installation
 Source Package
 --------------
 
-For the inpatient, 
+Get the latest version from github:
+
+https://github.com/lima1/franzpedigree/tarball/master
+
+
+Then unzip:
+
+tar xvfz lima1-franzpedigree-30eaf35.tar.gz
+cd lima1-franzpedigree-30eaf35
+
+
+Then compile:
 
   ./configure 
   make check  (optional, may take a while)
@@ -82,6 +93,7 @@ For multicore CPUs (highly recommended! requires GCC >=4.2 or ICC).
 
 I develop with --enable-openmp, so it is better tested than the single
 CPU version. See INSTALL for detailed instructions.
+
 
 Mac OS X
 ========
