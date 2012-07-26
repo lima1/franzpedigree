@@ -899,6 +899,10 @@ DATAIOinfile(char *filename)
 
             /* parse marker data */
             for (k = 0; k < Data.num_loci; ++k) {
+                if (p == NUL) {
+                    snprintf(msg, sizeof(msg), "Expecting %i loci, but got only %i", Data.num_loci, k-1);
+                    fatalParseError(filename, msg_prefix, msg, line);
+                }    
                 res = sscanf(p, "%d%c%d", &a1, sep, &a2);
                 if (res == 2) { /* ok, parsing of the second allele failed */
                     /* second allele a question mark (=missing data)?       */
