@@ -682,6 +682,14 @@ Furthermore, the family structure in the data also influences the required
 genomic signal. If we cannot exclude relatives as candidate parents, we need
 more loci. On the other hand, fullsibs we can exclude as parents (e.g. because
 of age prior knowledge) will reduce the amount of required loci [Wan07].
+.PP
+For data sets with very powerful marker panels (>500 SNPs for example),
+parentage inference is trivial and the results should be highly accurate.
+Make sure that the typing error is reasonable, otherwise parentages with
+relatively high numbers of mismatches will be ignored. You might also want to
+set the number of mismatches to a slightly higher value then simulation-based
+suggestion in summary.txt.
+
 .SH INCOMPLETE SAMPLING
 As already stated in the previous section, the sampling rate of candidate
 parents is very important for a successful application of parentage inference
