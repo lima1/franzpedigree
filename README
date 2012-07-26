@@ -68,6 +68,10 @@ Installation
 Source Package
 --------------
 
+If possible, try to compile FRANz. Supporting the different versions of the
+major operating systems is difficult, but the source code should always work.
+If you have trouble compiling the code on Linux or Mac, please contact us.
+
 Get the latest version from github:
 
 https://github.com/lima1/franzpedigree/tarball/master
@@ -81,6 +85,7 @@ cd lima1-franzpedigree-30eaf35
 
 Then compile:
 
+  autoreconf
   ./configure 
   make check  (optional, may take a while)
   make install
@@ -108,6 +113,9 @@ OpenMP, you have to compile FRANz with gcc-4.2 (or newer) or Intel's ICC. GCC
   ./configure --enable-openmp CC=gcc-4.2
   make check (optional)
   make install
+
+Make sure that you use gcc or icc for OpenMP; on newer Mac versions, you have
+to install the command line tools in XCode 4.3 or newer.
 
 On Tiger if you don't want to install a recent compiler (e.g. from
 finkproject.org):
@@ -148,6 +156,39 @@ converter available on the FRANz website.
 Also check the manpage 
   
   man FRANz
+
+
+Troubleshooting
+===============
+
+Most of the problems are related to wrongly formatted input files. If you get
+a segmentation fault, please if possible try to re-compile with --enable-debug.
+Then start FRANz in the GNU debugger:
+
+    $ gdb lima1-franzpedigree-30eaf35/scr/FRANz
+
+Then run the program with the same set of paramaters:
+
+    GNU gdb 6.3.50-20050815 (Apple version gdb-1515) (Sat Jan 15 08:33:48 UTC
+    2011)
+    Copyright 2004 Free Software Foundation, Inc.
+    GDB is free software, covered by the GNU General Public License, and you are
+    welcome to change it and/or distribute copies of it under certain conditions.
+    Type "show copying" to see the conditions.
+    There is absolutely no warranty for GDB.  Type "show warranty" for details.
+    This GDB was configured as "x86_64-apple-darwin"...Reading symbols for shared
+    libraries .. done
+
+    (gdb) run input.dat --femrepro 1:10 --malerepro 1:10 --N 10 
+
+After the segmentation fault, type backtrace and send us the output with your
+bugreport:
+
+    Program received signal EXC_BAD_ACCESS, Could not access memory.
+    Reason: KERN_INVALID_ADDRESS at address: 0x0000000000000000
+    0x00007fff86bddc00 in strlen ()
+    (gdb) backtrace 
+
 
 
 Feedback
