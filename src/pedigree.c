@@ -147,7 +147,7 @@ calcPV(double *sf, double *nsf, int csf, int cnsf, PVALUE_LOOKUP *pv_lup) {
 double
 PEDIGREEcalcSelfingRateN(Dag D) 
 {
-    int i, indegree, v = DAGgetVertexNumber(D), j, homo, csf = 0, cnsf=0, cnt=0;
+    int i, indegree, v = DAGgetVertexNumber(D), homo, csf = 0, cnsf=0, cnt=0;
     double selfings = 0.,parentages = 0.,*sf, *nsf, pvrsf = EPSILON, pvrnsf = EPSILON, r;
     Edge incoming[2];
     PVALUE_LOOKUP pv_lup;// = PVALUEinit(Data.num_loci*2,0.,(double)Data.num_loci*2.);

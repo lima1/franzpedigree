@@ -1563,7 +1563,7 @@ checkIndirectFullsib(int i, int j, int k, bool remove, bool * changed)
 static void
 calcIndirectFullsibs(void)
 {
-    int     i, j, k, l = 0,t;
+    int     i, j, k, l = 0,t, count = 0;
     bool    changed[2];
         for (i = 0; i < Data.num_samples; i++)
             for (j = 0; j < i; j++) {
@@ -1595,6 +1595,12 @@ calcIndirectFullsibs(void)
                         checkIndirectFullsib(j, i, k, false, &changed[1]);
                     }
     }
+    for (i = 0; i < Data.num_samples; i++)
+        for (j = 0; j < i; j++) {
+            t = TIDX(i,j);
+            if (Data.fs_matrix[t].indirect) count++;
+        }        
+    if (count>Data.num_samples*0.1) WARN("Many indirect fullsib assignments. Try running without --fullsibtest");
 }
 
 void
