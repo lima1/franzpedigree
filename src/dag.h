@@ -43,7 +43,7 @@
 #include <stdbool.h>
 
 #ifndef LINESIZE
-#define LINESIZE 1048576
+#define LINESIZE 65536
 #endif
 #define LABELSIZE 10
 
