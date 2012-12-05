@@ -66,7 +66,7 @@ if test "x$enable_debug" = xyes; then
     #CFLAGS="$CFLAGS -DHASH_EMIT_KEYS=3"
     AC_DEFINE(DEBUG,1,[Enable debug code])
 else    
-    CFLAGS="$CFLAGS -O3 -pedantic -Wall"
+    CFLAGS="$CFLAGS -O2 -pedantic -Wall"
 #    AC_DEFINE(DEBUG,0,[Disable debug code])
 fi
 
