@@ -93,7 +93,7 @@ Then compile:
     make check  (optional, may take a while)
     make install
 
-For multicore CPUs (highly recommended! requires GCC >=4.2 or ICC).
+For multicore CPUs (requires GCC >=4.2 or ICC).
 
     ./configure --enable-openmp
     make check (optional)
