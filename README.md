@@ -71,9 +71,9 @@ Source Package
 If possible, try to compile FRANz. Supporting the different versions of the
 major operating systems is difficult, but the source code should always work.
 If you have trouble compiling the code on Linux or Mac, please contact us.
-Download the latest tested source code from github:
+Download the latest stable source code from SourceForge.net:
 
-https://github.com/lima1/franzpedigree/downloads
+http://sourceforge.net/projects/franzpedigree/files/
 
 Alternatively, get the newest code from github:
 
