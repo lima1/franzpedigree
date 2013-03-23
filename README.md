@@ -73,7 +73,7 @@ major operating systems is difficult, but the source code should always work.
 If you have trouble compiling the code on Linux or Mac, please contact us.
 Download the latest tested source code from github:
 
-    https://github.com/lima1/franzpedigree/downloads
+https://github.com/lima1/franzpedigree/downloads
 
 Alternatively, get the newest code from github:
 
@@ -88,16 +88,16 @@ Then unzip:
 
 Then compile:
 
-  autoreconf (only necessary if you use the latest code from github)
-  ./configure 
-  make check  (optional, may take a while)
-  make install
+    autoreconf (only necessary if you use the latest code from github)
+    ./configure 
+    make check  (optional, may take a while)
+    make install
 
 For multicore CPUs (highly recommended! requires GCC >=4.2 or ICC).
 
-  ./configure --enable-openmp
-  make check (optional)
-  make install
+    ./configure --enable-openmp
+    make check (optional)
+    make install
 
 
 
@@ -111,9 +111,9 @@ To compile the source package, you need the Apple Developer Tools. To enable
 OpenMP, you have to compile FRANz with gcc-4.2 (or newer) or Intel's ICC. GCC
 4.2 is available on Leopard:
 
-  ./configure --enable-openmp CC=gcc-4.2
-  make check (optional)
-  make install
+    ./configure --enable-openmp CC=gcc-4.2
+    make check (optional)
+    make install
 
 Make sure that you use gcc or icc for OpenMP; on newer Mac versions, you have
 to install the command line tools in XCode 4.3 or newer.
@@ -121,9 +121,9 @@ to install the command line tools in XCode 4.3 or newer.
 On Tiger if you don't want to install a recent compiler (e.g. from
 finkproject.org):
 
-  ./configure
-  make check (optional)
-  make install
+    ./configure
+    make check (optional)
+    make install
 
 Windows
 =======
@@ -141,10 +141,10 @@ Otherwise at least the progressbar will not work.
 Additional configure Flags
 ==========================
 
-  --enable-openmp      OpenMP support
-  --enable-debug       Enables debug code and compiles with -g -O0
-  --enable-assertions  Enables assertions. Warning: will make the program
-                       really slow
+    --enable-openmp      OpenMP support
+    --enable-debug       Enables debug code and compiles with -g -O0
+    --enable-assertions  Enables assertions. Warning: will make the program
+                         really slow
 
 Tutorial
 ========
@@ -156,7 +156,7 @@ converter available on the FRANz website.
 
 Also check the manpage 
   
-  man FRANz
+    man FRANz
 
 
 Troubleshooting
