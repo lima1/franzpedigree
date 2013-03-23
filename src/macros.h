@@ -171,7 +171,7 @@
     for (I=0;I<N;I++) { \
         if (Options.Verbosity > 0) \
             VTPROGRESSBARupdate("Initializing Mersenne Twister", N, I);\
-        Options._MTS[I] = get_mt_parameter_id_st(31,521,I,A); \
+        Options._MTS[I] = get_mt_parameter_id_st(31,521,(I<9?I:I+1),A); \
         if (Options._MTS[I] == NULL) FATALINT("macros.h: SRAND"); \
         sgenrand_mt(I*A,Options._MTS[I]); \
     }\

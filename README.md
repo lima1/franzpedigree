@@ -6,15 +6,15 @@ A pedigree (family tree) reconstruction tool for natural populations.
 Key Features:
 -------------
 
-- Allele frequency analyses:
+* Allele frequency analyses:
      * Heterozygosities 
      * Polymorphic Information Content (PIC) 
      * Exact Hardy Weinberg Test
      * Test for Null Alleles
 
-- Exclusion probabilities: Estimate the power of your marker suite. 
+* Exclusion probabilities: Estimate the power of your marker suite. 
 
-- FRANz is flexible, you CAN (but don't have to!) incorporate available prior
+* FRANz is flexible, you CAN (but don't have to!) incorporate available prior
   knowledge:
 
      * Known sub-pedigrees (e.g. mother-offspring arcs) or fullsib groups
@@ -24,21 +24,21 @@ Key Features:
 
   Most other tools assume that you know all or most of these.
 
-- User friendly: FRANz uses this prior knowledge to generate the lists of 
+* User friendly: FRANz uses this prior knowledge to generate the lists of 
   candidate parents internally. Once you have your data in a FRANz input
   file, you are almost done. A GUI for input file generation is available on
   our website.
 
-- Can handle data with typing errors and missing alleles.
+* Can handle data with typing errors and missing alleles.
 
-- Estimation of the number of unsampled candidate mothers and fathers.
+* Estimation of the number of unsampled candidate mothers and fathers.
 
-- FRANz is fast: It was written for data sets with thousands of individuals.
+* FRANz is fast: It was written for data sets with thousands of individuals.
   It supports modern CPUs with multiple cores.
 
-- Available for Windows, Mac and Linux.
+* Available for Windows, Mac and Linux.
 
-- Open Source: Obtain FRANz under the GPL Version 3.
+* Open Source: Obtain FRANz under the GPL Version 3.
 
 
 
@@ -49,17 +49,17 @@ This is not exactly a TODO list, these are some features we might implement if
 there is a demand. Please don't hestitate to contact us if you need one of these
 features:
 
- - support for haplo-diploid species
- - support for dominant markers
- - We also don't support what Sheehan and Egeland (doi
-   10.1111/j.1469-1809.2006.00345.x) call "soft prior information". One
-   example here would be an age dependent probability for sexual reproduction,
-   for example with something like
+* support for haplo-diploid species
+* support for dominant markers
+* We also don't support what Sheehan and Egeland (doi
+  10.1111/j.1469-1809.2006.00345.x) call "soft prior information". One
+  example here would be an age dependent probability for sexual reproduction,
+  for example with something like
 
      --femrepro 2:8 --femreproprob 1,2,3,4,3,2,1
 
-   we could say that the reproductive potential of a three year old female is
-   twice the one of two year old females.  
+  we could say that the reproductive potential of a three year old female is
+  twice the one of two year old females.  
 
 
 Installation
@@ -71,21 +71,24 @@ Source Package
 If possible, try to compile FRANz. Supporting the different versions of the
 major operating systems is difficult, but the source code should always work.
 If you have trouble compiling the code on Linux or Mac, please contact us.
+Download the latest tested source code from github:
 
-Get the latest version from github:
+    https://github.com/lima1/franzpedigree/downloads
+
+Alternatively, get the newest code from github:
 
 https://github.com/lima1/franzpedigree/tarball/master
 
 
 Then unzip:
 
-tar xvfz lima1-franzpedigree-30eaf35.tar.gz
-cd lima1-franzpedigree-30eaf35
+    tar xvfz lima1-franzpedigree-30eaf35.tar.gz
+    cd lima1-franzpedigree-30eaf35
 
 
 Then compile:
 
-  autoreconf
+  autoreconf (only necessary if you use the latest code from github)
   ./configure 
   make check  (optional, may take a while)
   make install
@@ -96,8 +99,6 @@ For multicore CPUs (highly recommended! requires GCC >=4.2 or ICC).
   make check (optional)
   make install
 
-I develop with --enable-openmp, so it is better tested than the single
-CPU version. See INSTALL for detailed instructions.
 
 
 Mac OS X

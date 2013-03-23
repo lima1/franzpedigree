@@ -2,8 +2,8 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.61)
-AC_INIT(FRANz, [1.9.999], [markus@bioinf.uni-leipzig.de] )
-AM_INIT_AUTOMAKE(FRANz,1.9.999)
+AC_INIT(FRANz, [2.0.0], [markus@bioinf.uni-leipzig.de] )
+AM_INIT_AUTOMAKE(FRANz,2.0.0)
 AC_CONFIG_SRCDIR([src/dataio.h])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADER([config.h])
