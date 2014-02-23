@@ -42,26 +42,6 @@ Key Features:
 
 
 
-Currently NOT supported 
------------------------
-
-This is not exactly a TODO list, these are some features we might implement if
-there is a demand. Please don't hestitate to contact us if you need one of these
-features:
-
-* support for haplo-diploid species
-* support for dominant markers
-* We also don't support what Sheehan and Egeland (doi
-  10.1111/j.1469-1809.2006.00345.x) call "soft prior information". One
-  example here would be an age dependent probability for sexual reproduction,
-  for example with something like
-
-     --femrepro 2:8 --femreproprob 1,2,3,4,3,2,1
-
-  we could say that the reproductive potential of a three year old female is
-  twice the one of two year old females.  
-
-
 Installation
 ============
 
@@ -162,7 +142,7 @@ Also check the manpage
 Known Problems
 ==============
 
-* Allele frequencies with partially missing gentypes. CERVUS ignores the rare
+* Allele frequencies with partially missing genotypes. CERVUS ignores the rare
   cases with partially missing genotypes (e.g. 123.?) in the allele frequency 
   calculation and we followed this strategy. This can cause  problems for rare 
   alleles.
