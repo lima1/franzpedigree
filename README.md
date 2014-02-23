@@ -159,6 +159,15 @@ Also check the manpage
     man FRANz
 
 
+Known Problems
+==============
+
+* Allele frequencies with partially missing gentypes. CERVUS ignores the rare
+  cases with partially missing genotypes (e.g. 123.?) in the allele frequency 
+  calculation and we followed this strategy. This can cause  problems for rare 
+  alleles.
+
+
 Troubleshooting
 ===============
 

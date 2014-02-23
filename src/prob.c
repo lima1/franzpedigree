@@ -868,6 +868,9 @@ PROBcalcPosteriors(void)
         ig = 0;
         max_ci = 0;
         ld = LODcalcDenominator(Data.id_mapping[i].genotype_obs, NULL);
+	
+	assert(ld > MINUSINF);
+
         /* merge all probabilities in one array, keep sorting */
         while (it < num_triples || id < num_dyads || ig < num_empty) {
             max_cp = cp[0] = cp[1] = cp[2] = MINUSINF;
