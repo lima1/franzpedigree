@@ -1,7 +1,7 @@
 # binaries
 
 LDADD = ../libdir/dcmt/lib/libdcmt.a
-AUTOMAKE_OPTIONS = subdir-objects
+#AUTOMAKE_OPTIONS = subdir-objects
 AM_CFLAGS = -I../libdir/dcmt/lib
 
 check_PROGRAMS = dag_tests dag_tests2 io_tests prob_tests ll_tests utils_tests hwe_tests mcmc_tests cervus_tests mlrelate_tests
