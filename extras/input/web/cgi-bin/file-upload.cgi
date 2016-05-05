@@ -180,7 +180,7 @@ sub create_data_row {
             $birth = $data->[$birth_col];
         }    
         if ($death_col > -1 && $data->[$death_col] =~ /\d\d\d\d/) {
-            $death_col = $data->[$death_col];
+            $death = $data->[$death_col];
         }    
         $line .= " 1 $birth $death $sex " . join(q{ }, @loci);
     }
