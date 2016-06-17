@@ -92,11 +92,12 @@ used. The minimum estimated error rate is 0.005.
 .TP
 .BI --femmaxdist " f"      
 Maximal distance of sampling locations for females. This is the maximal
-allowed distance between mother and offspring. 
-.TP
+allowed distance between mother and offspring. If coordinates are provided, the
+expected distance unit is meters. 
 .BI --malemaxdist " f"
 The same for males (candidate fathers). For individuals with unknown sex, the
 maximum of the both distances are used (and unlimited if only one is specified).
+If coordinates are provided, the expected distance unit is meters.
 .TP
 .BI --parentsmaxdist " f"
 And the maximal distance between mother and father.
