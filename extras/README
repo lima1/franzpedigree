@@ -1,0 +1,5 @@
+Prepare_Run_FRANz.R is an R script to run FRANz from R with PLINK files. Thanks
+to Jisca Huisman (https://github.com/JiscaH/sequoia) for contributing!
+
+input and installer provide the source code of the CSV webservice and the
+Windows installer.
